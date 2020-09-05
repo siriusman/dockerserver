@@ -1,15 +1,15 @@
-
 FROM alpine
 
 RUN apk add git \
-	&& apk add yarn \
-	&& git clone https://github.com/siriusman/dockerserver.git \ 
-	&& cd dockerserver \
-	&& yarn 
+		&& apk add npm \
+		&& npm i -g http-server \
+		&& git clone https://github.com/siriusman/dockerserver.git 
+
+VOLUME ./dockerserver
 
 WORKDIR ./dockerserver
 
-CMD yarn start
+EXPOSE 8080
 
-EXPOSE 3000
+CMD http-server
 
